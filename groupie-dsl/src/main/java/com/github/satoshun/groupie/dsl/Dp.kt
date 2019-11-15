@@ -2,6 +2,7 @@ package com.github.satoshun.groupie.dsl
 
 import android.content.Context
 
+// TODO use jetpack compose 
 data class GroupieDp(val value: Float)
 
 internal fun GroupieDp.px(context: Context): Int =

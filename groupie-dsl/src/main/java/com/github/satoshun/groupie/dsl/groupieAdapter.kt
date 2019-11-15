@@ -1,9 +1,7 @@
 package com.github.satoshun.groupie.dsl
 
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.core.view.updateLayoutParams
 import com.xwray.groupie.ExpandableGroup
 import com.xwray.groupie.ExpandableItem
 import com.xwray.groupie.Group
@@ -16,6 +14,9 @@ import java.util.concurrent.atomic.AtomicLong
 annotation class GroupieDSL
 
 @GroupieDSL
+interface GroupieDSLTag
+
+@GroupieDSL
 fun groupieAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
   BuilderGroupAdapter().apply {
     block()
@@ -24,8 +25,7 @@ fun groupieAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
 
 private val ID_COUNTER = AtomicLong(0)
 
-@GroupieDSL
-class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>() {
+class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(), GroupieDSLTag {
   private var items: MutableList<Group> = mutableListOf()
 
   fun update(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
@@ -63,12 +63,6 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>() {
         )
       ).apply(expandedBlock)
     )
-  }
-
-  fun heightSpacer(dp: GroupieDp) {
-    item(R.layout.groupie_dsl_height_spacer) {
-      updateLayoutParams<ViewGroup.LayoutParams> { height = dp.px(context) }
-    }
   }
 
   internal fun addAll() {
