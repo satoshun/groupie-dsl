@@ -4,7 +4,7 @@ const val COMPILE_SDK = 29
 const val MIN_SDK = 21
 const val TARGET_SDK = 29
 
-private const val VKOTLIN = "1.3.50"
+private const val VKOTLIN = "1.3.60"
 private const val VNAVIGATION = "1.0.0"
 
 const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.6.0-beta04"

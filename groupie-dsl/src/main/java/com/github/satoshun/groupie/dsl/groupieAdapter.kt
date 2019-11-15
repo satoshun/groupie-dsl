@@ -10,6 +10,10 @@ import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import java.util.concurrent.atomic.AtomicLong
 
+@DslMarker
+annotation class GroupieDSL
+
+@GroupieDSL
 fun groupieAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
   BuilderGroupAdapter().apply {
     block()
@@ -18,6 +22,7 @@ fun groupieAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
 
 private val ID_COUNTER = AtomicLong(0)
 
+@GroupieDSL
 class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>() {
   private var items: MutableList<Group> = mutableListOf()
 
@@ -42,6 +47,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>() {
     )
   }
 
+  @GroupieDSL
   fun expandable(
     @LayoutRes layoutRes: Int,
     block: View.(Int, ExpandableGroup) -> Unit,
@@ -70,6 +76,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>() {
   }
 }
 
+@GroupieDSL
 class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
   fun item(
     @LayoutRes layoutRes: Int,
