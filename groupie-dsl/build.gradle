@@ -1,0 +1,36 @@
+import static dependencies.DependenciesKt.*
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdkVersion COMPILE_SDK
+
+  defaultConfig {
+    minSdkVersion MIN_SDK
+    targetSdkVersion TARGET_SDK
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+}
+
+dependencies {
+  implementation KOTLIN
+
+  implementation APPCOMPAT
+  implementation KTX
+  implementation RECYCLERVIEW
+
+  implementation GROUPIE
+
+  implementation COROUTINE
+  implementation UI_COROUTINE
+
+  implementation LIFECYCLE_RUNTIME
+
+  testImplementation JUNIT
+
+  androidTestImplementation TEST_RUNNER
+  androidTestImplementation ESPRESSO
+}

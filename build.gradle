@@ -1,0 +1,30 @@
+import static dependencies.DependenciesKt.*
+
+buildscript {
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
+    classpath ANDROID_PLUGIN
+    classpath KOTLIN_PLUGIN
+    classpath VERSIONS_PLUGIN
+  }
+}
+
+allprojects {
+  repositories {
+    google()
+    jcenter()
+  }
+
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+      jvmTarget = JavaVersion.VERSION_1_8
+    }
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
