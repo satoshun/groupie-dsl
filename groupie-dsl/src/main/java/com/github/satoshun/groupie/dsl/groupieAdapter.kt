@@ -27,10 +27,6 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>() {
       updateAll()
     }
 
-  operator fun Group.unaryPlus() {
-    items.plusAssign(this)
-  }
-
   fun item(
     @LayoutRes layoutRes: Int,
     data: Any? = null,
@@ -101,7 +97,8 @@ class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
           layoutRes,
           block
         )
-      ).apply(expandableBlock))
+      ).apply(expandableBlock)
+    )
   }
 }
 
