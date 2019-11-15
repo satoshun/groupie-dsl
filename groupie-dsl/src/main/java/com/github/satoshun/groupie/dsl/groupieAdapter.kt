@@ -1,7 +1,9 @@
 package com.github.satoshun.groupie.dsl
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.view.updateLayoutParams
 import com.xwray.groupie.ExpandableGroup
 import com.xwray.groupie.ExpandableItem
 import com.xwray.groupie.Group
@@ -37,7 +39,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>() {
     data: Any? = null,
     block: View.(Int) -> Unit
   ) {
-    items.plusAssign(
+    items.add(
       BuilderItem(
         data?.hashCode()?.toLong() ?: ID_COUNTER.decrementAndGet(),
         layoutRes,
@@ -53,16 +55,20 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>() {
     block: View.(Int, ExpandableGroup) -> Unit,
     expandedBlock: BuilderExpandableGroup.() -> Unit
   ) {
-    items.plusAssign(
+    items.add(
       BuilderExpandableGroup(
         ExpandableBuilderItem(
           layoutRes,
           block
         )
-      ).apply(
-        expandedBlock
-      )
+      ).apply(expandedBlock)
     )
+  }
+
+  fun heightSpacer(dp: GroupieDp) {
+    item(R.layout.groupie_dsl_height_spacer) {
+      updateLayoutParams<ViewGroup.LayoutParams> { height = dp.px(context) }
+    }
   }
 
   internal fun addAll() {

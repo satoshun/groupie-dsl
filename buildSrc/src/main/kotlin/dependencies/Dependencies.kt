@@ -1,7 +1,7 @@
 package dependencies
 
 const val COMPILE_SDK = 29
-const val MIN_SDK = 21
+const val MIN_SDK = 18
 const val TARGET_SDK = 29
 
 private const val VKOTLIN = "1.3.60"
@@ -36,52 +36,18 @@ const val BROWSER = "androidx.browser:browser:1.0.0"
 const val NAVIGATION = "android.arch.navigation:navigation-fragment-ktx:$VNAVIGATION"
 const val NAVIGATION_UI = "android.arch.navigation:navigation-ui-ktx:$VNAVIGATION"
 
-private const val VROOM = "2.1.0-alpha04"
-const val ROOM_COMMON = "androidx.room:room-common:$VROOM"
-const val ROOM_RUNTIME = "androidx.room:room-runtime:$VROOM"
-const val ROOM_COMPILER = "androidx.room:room-compiler:$VROOM"
-
-const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-alpha03"
-const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.1.0-alpha03"
+const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
+const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.1.0"
 const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:2.0.0"
-const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha03"
+const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:2.1.0"
 const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02"
 
-const val BIOMETRIC = "androidx.biometric:biometric:1.0.0-alpha03"
-
-const val EMOJI = "androidx.emoji:emoji:1.0.0"
-const val EMOJI_COMPAT = "androidx.emoji:emoji-appcompat:1.0.0"
-const val EMOJI_BUNDLED = "androidx.emoji:emoji-bundled:1.0.0"
-
-const val SAVEDSTATE = "androidx.savedstate:savedstate:1.0.0-alpha02"
-const val SAVEDSTATE_VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01"
-
-const val VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.0.0-alpha01"
-
-const val RECOMMENDATION = "androidx.recommendation:recommendation:1.0.0"
-
-const val PREFERENCE = "androidx.preference:preference-ktx:1.1.0-alpha03"
-
 const val MULTIDEX = "androidx.multidex:multidex:2.0.0"
-
-const val RXWEBVIEW = "com.github.satoshun.RxWebView:rxwebview-kotlin:2.3.0"
-
-const val RXJAVA = "io.reactivex.rxjava2:rxjava:2.2.0"
-const val RXANDROID = "io.reactivex.rxjava2:rxandroid:2.1.0"
 
 const val GROUPIE = "com.xwray:groupie:2.7.1"
 const val GROUPIE_DATABINDING = "com.xwray:groupie-databinding:2.7.1"
 
-const val WORK_MANAGER = "androidx.work:work-runtime-ktx:2.0.0-rc01"
-
 const val ANDROID_ANNOTATION = "androidx.annotation:annotation:1.0.0"
-
-private const val VDAGGER = "2.22.1"
-const val DAGGER_RUNTIME = "com.google.dagger:dagger:$VDAGGER"
-const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$VDAGGER"
-const val DAGGER_ANDROID_RUNTIME = "com.google.dagger:dagger-android:$VDAGGER"
-const val DAGGER_ANDROID_COMPILER = "com.google.dagger:dagger-android-processor:$VDAGGER"
-const val DAGGER_ANDROID_SUPPORT_RUNTIME = "com.google.dagger:dagger-android-support:$VDAGGER"
 
 const val GLIDE = "com.github.bumptech.glide:glide:4.9.0"
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.satoshun.example.databinding.MainActBinding
 import com.github.satoshun.example.databinding.MainItem1Binding
 import com.github.satoshun.example.databinding.MainItem2Binding
+import com.github.satoshun.groupie.dsl.dp
 import com.github.satoshun.groupie.dsl.groupieAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         val binding = MainItem1Binding.bind(this)
         binding.title.text = "Main1"
       }
+
+      heightSpacer(16.dp)
 
       item(R.layout.main_item2) {
         val binding = MainItem2Binding.bind(this)
