@@ -14,7 +14,6 @@ import com.github.satoshun.groupie.dsl.groupieAdapter
 import com.github.satoshun.groupie.dsl.heightSpacer
 import com.github.satoshun.groupie.dsl.margin
 import com.github.satoshun.groupie.dsl.padding
-import com.github.satoshun.groupie.dsl.text
 import com.github.satoshun.groupie.dsl.widthSpacer
 
 class MainActivity : AppCompatActivity() {
@@ -36,15 +35,15 @@ class MainActivity : AppCompatActivity() {
       heightSpacer(16.dp)
 
       margin(16.dp) {
-        item(R.layout.main_item2) {
-          val binding = MainItem2Binding.bind(this)
-          binding.title.text = "Main2"
+        padding(16.dp) {
+          item(R.layout.main_item2) {
+            val binding = MainItem2Binding.bind(this)
+            binding.title.text = "Main2"
+          }
         }
       }
 
       heightSpacer(16.dp)
-
-      text("TEXT")
     }
 
     binding.horizontal.layoutManager = LinearLayoutManager(

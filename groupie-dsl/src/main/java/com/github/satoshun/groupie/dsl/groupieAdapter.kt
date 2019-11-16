@@ -24,7 +24,6 @@ interface GroupieItemBuilder : GroupieDSLTag {
   )
 }
 
-@GroupieDSL
 fun groupieAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
   BuilderGroupAdapter().apply {
     block()

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 
-fun BuilderGroupAdapter.margin(
+fun GroupieItemBuilder.margin(
   left: GroupieDp = 0.dp,
   top: GroupieDp = 0.dp,
   right: GroupieDp = 0.dp,
@@ -23,7 +23,7 @@ fun BuilderGroupAdapter.margin(
     .child()
 }
 
-fun BuilderGroupAdapter.margin(
+fun GroupieItemBuilder.margin(
   margin: GroupieDp,
   child: GroupieItemBuilder.() -> Unit
 ) {
@@ -36,7 +36,7 @@ fun BuilderGroupAdapter.margin(
   )
 }
 
-fun BuilderGroupAdapter.padding(
+fun GroupieItemBuilder.padding(
   left: GroupieDp = 0.dp,
   top: GroupieDp = 0.dp,
   right: GroupieDp = 0.dp,
@@ -54,7 +54,7 @@ fun BuilderGroupAdapter.padding(
     .child()
 }
 
-fun BuilderGroupAdapter.padding(
+fun GroupieItemBuilder.padding(
   padding: GroupieDp,
   child: GroupieItemBuilder.() -> Unit
 ) {
@@ -68,11 +68,11 @@ fun BuilderGroupAdapter.padding(
 }
 
 internal class SingleGroupieItemBuilder(
-  private val delegate: BuilderGroupAdapter,
+  private val parent: GroupieItemBuilder,
   private val beforeBlock: View.(Int) -> Unit
 ) : GroupieItemBuilder {
   override fun item(layoutRes: Int, data: Any?, block: View.(Int) -> Unit) {
-    delegate.item(layoutRes, data) {
+    parent.item(layoutRes, data) {
       beforeBlock(it)
       block(it)
     }
