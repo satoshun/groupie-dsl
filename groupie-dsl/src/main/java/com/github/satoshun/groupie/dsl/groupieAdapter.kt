@@ -26,6 +26,12 @@ interface GroupieItemBuilder : GroupieDSLTag {
     @LayoutRes layoutRes: Int,
     block: View.() -> Unit
   )
+
+  fun <T> CoroutineScope.item(
+    source: LiveData<T>,
+    @LayoutRes layoutRes: Int,
+    block: View.(T?) -> Unit
+  )
 }
 
 fun groupieAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
@@ -61,7 +67,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
     )
   }
 
-  fun <T> CoroutineScope.item(
+  override fun <T> CoroutineScope.item(
     source: LiveData<T>,
     @LayoutRes layoutRes: Int,
     block: View.(T?) -> Unit

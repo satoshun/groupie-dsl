@@ -4,6 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+import androidx.lifecycle.LiveData
+import kotlinx.coroutines.CoroutineScope
 
 fun GroupieItemBuilder.margin(
   left: GroupieDp = 0.dp,
@@ -75,6 +77,19 @@ internal class SingleGroupieItemBuilder(
     parent.item(layoutRes) {
       beforeBlock()
       block()
+    }
+  }
+
+  override fun <T> CoroutineScope.item(
+    source: LiveData<T>,
+    layoutRes: Int,
+    block: View.(T?) -> Unit
+  ) {
+    with(parent) {
+      item(source, layoutRes) {
+        this@SingleGroupieItemBuilder.beforeBlock(this)
+        block(it)
+      }
     }
   }
 }
