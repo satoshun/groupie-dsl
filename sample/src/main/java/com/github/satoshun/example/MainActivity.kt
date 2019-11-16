@@ -12,6 +12,7 @@ import com.github.satoshun.example.databinding.MainItem2Binding
 import com.github.satoshun.groupie.dsl.dp
 import com.github.satoshun.groupie.dsl.groupieAdapter
 import com.github.satoshun.groupie.dsl.heightSpacer
+import com.github.satoshun.groupie.dsl.padding
 import com.github.satoshun.groupie.dsl.widthSpacer
 
 class MainActivity : AppCompatActivity() {
@@ -51,9 +52,11 @@ class MainActivity : AppCompatActivity() {
 
       widthSpacer(32.dp)
 
-      item(R.layout.main_item11) {
-        val binding = MainItem11Binding.bind(this)
-        binding.title.text = "Main111"
+      padding(16.dp) {
+        item(R.layout.main_item11) {
+          val binding = MainItem11Binding.bind(this)
+          binding.title.text = "Main111"
+        }
       }
     }
   }

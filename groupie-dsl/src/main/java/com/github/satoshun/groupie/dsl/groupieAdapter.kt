@@ -16,6 +16,14 @@ annotation class GroupieDSL
 @GroupieDSL
 interface GroupieDSLTag
 
+interface GroupieItemBuilder : GroupieDSLTag {
+  fun item(
+    @LayoutRes layoutRes: Int,
+    data: Any? = null,
+    block: View.(Int) -> Unit
+  )
+}
+
 @GroupieDSL
 fun groupieAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
   BuilderGroupAdapter().apply {
