@@ -33,7 +33,10 @@ fun groupieAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
 
 private val ID_COUNTER = AtomicLong(0)
 
-class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(), GroupieDSLTag {
+class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
+  GroupieItemBuilder,
+  GroupieDSLTag {
+
   private var items: MutableList<Group> = mutableListOf()
 
   fun update(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
@@ -42,9 +45,9 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(), GroupieDSLTag {
       updateAll()
     }
 
-  fun item(
+  override fun item(
     @LayoutRes layoutRes: Int,
-    data: Any? = null,
+    data: Any?,
     block: View.(Int) -> Unit
   ) {
     items.add(
