@@ -42,6 +42,7 @@ binding.vertical.adapter = groupieAdapter {
 ### horizontal
 
 ```kotlin
+binding.horizontal.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 binding.horizontal.adapter = groupieAdapter {
   item(R.layout.main_item11) {
     val binding = MainItem11Binding.bind(this)
