@@ -1,7 +1,40 @@
 package com.github.satoshun.groupie.dsl
 
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+
+fun BuilderGroupAdapter.margin(
+  left: GroupieDp = 0.dp,
+  top: GroupieDp = 0.dp,
+  right: GroupieDp = 0.dp,
+  bottom: GroupieDp = 0.dp,
+  child: GroupieItemBuilder.() -> Unit
+) {
+  SingleGroupieItemBuilder(this) {
+    updateLayoutParams<ViewGroup.MarginLayoutParams> {
+      this.leftMargin = left.px(context)
+      this.topMargin = top.px(context)
+      this.rightMargin = right.px(context)
+      this.bottomMargin = bottom.px(context)
+    }
+  }
+    .child()
+}
+
+fun BuilderGroupAdapter.margin(
+  margin: GroupieDp,
+  child: GroupieItemBuilder.() -> Unit
+) {
+  margin(
+    left = margin,
+    top = margin,
+    right = margin,
+    bottom = margin,
+    child = child
+  )
+}
 
 fun BuilderGroupAdapter.padding(
   left: GroupieDp = 0.dp,
