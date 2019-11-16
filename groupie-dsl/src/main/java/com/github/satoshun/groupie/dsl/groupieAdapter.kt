@@ -78,7 +78,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
     scope.launch {
       source.asFlow().collect {
         item.state = it
-        item.notifyChanged()
+        item.notifyChanged(it)
       }
     }
   }
