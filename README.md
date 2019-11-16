@@ -35,9 +35,11 @@ binding.horizontal.adapter = groupieAdapter {
 
   widthSpacer(32.dp)
 
-  item(R.layout.main_item11) {
-    val binding = MainItem11Binding.bind(this)
-    binding.title.text = "Main111"
+  padding(16.dp) {
+    item(R.layout.main_item11) {
+      val binding = MainItem11Binding.bind(this)
+      binding.title.text = "Main111"
+    }
   }
 }
 ```
