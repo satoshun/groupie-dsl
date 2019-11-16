@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity() {
         )
       }
 
-      item(lifecycleScope, dataSource, R.layout.main_item1) { data, _ ->
+      lifecycleScope.item(dataSource, R.layout.main_item1) {
         val binding = MainItem1Binding.bind(this)
-        binding.title.text = data.toString()
+        binding.title.text = it.toString()
       }
     }
 

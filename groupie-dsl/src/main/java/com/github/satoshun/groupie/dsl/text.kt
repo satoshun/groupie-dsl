@@ -15,7 +15,7 @@ fun GroupieItemBuilder.text(
   overflow: TextUtils.TruncateAt? = null,
   textAlignment: Int = View.TEXT_ALIGNMENT_INHERIT,
   maxLines: Int = -1,
-  block: TextView.(Int) -> Unit = {}
+  block: TextView.() -> Unit = {}
 ) {
   item(R.layout.groupie_dsl_text) {
     updateLayoutParams<ViewGroup.LayoutParams> {
@@ -38,6 +38,6 @@ fun GroupieItemBuilder.text(
 
     textView.textAlignment = textAlignment
 
-    textView.block(it)
+    textView.block()
   }
 }

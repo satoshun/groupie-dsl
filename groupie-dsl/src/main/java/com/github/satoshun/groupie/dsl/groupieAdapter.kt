@@ -24,7 +24,7 @@ interface GroupieDSLTag
 interface GroupieItemBuilder : GroupieDSLTag {
   fun item(
     @LayoutRes layoutRes: Int,
-    block: View.(Int) -> Unit
+    block: View.() -> Unit
   )
 }
 
@@ -50,7 +50,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
 
   override fun item(
     @LayoutRes layoutRes: Int,
-    block: View.(Int) -> Unit
+    block: View.() -> Unit
   ) {
     items.add(
       BuilderItem(
@@ -61,11 +61,10 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
     )
   }
 
-  fun <T> item(
-    scope: CoroutineScope,
+  fun <T> CoroutineScope.item(
     source: LiveData<T>,
     @LayoutRes layoutRes: Int,
-    block: View.(T?, Int) -> Unit
+    block: View.(T?) -> Unit
   ) {
     val item = StateBuilderItem<T>(
       ID_COUNTER.decrementAndGet(),
@@ -75,7 +74,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
     )
     items.add(item)
 
-    scope.launch {
+    launch {
       source.asFlow().collect {
         item.state = it
         item.notifyChanged(it)
@@ -86,7 +85,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
   @GroupieDSL
   fun expandable(
     @LayoutRes layoutRes: Int,
-    block: View.(Int, ExpandableGroup) -> Unit,
+    block: View.(ExpandableGroup) -> Unit,
     expandedBlock: BuilderExpandableGroup.() -> Unit
   ) {
     items.add(
@@ -114,7 +113,7 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
 class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
   fun item(
     @LayoutRes layoutRes: Int,
-    block: View.(Int) -> Unit
+    block: View.() -> Unit
   ) {
     add(
       BuilderItem(
@@ -127,7 +126,7 @@ class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
 
   fun expandable(
     @LayoutRes layoutRes: Int,
-    block: View.(Int, ExpandableGroup) -> Unit,
+    block: View.(ExpandableGroup) -> Unit,
     expandableBlock: BuilderExpandableGroup.() -> Unit
   ) {
     add(
@@ -144,12 +143,12 @@ class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
 internal data class BuilderItem(
   private val _id: Long,
   @LayoutRes private val layoutRes: Int,
-  private val block: View.(Int) -> Unit
+  private val block: View.() -> Unit
 ) : Item<GroupieViewHolder>(_id) {
   override fun getLayout(): Int = layoutRes
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-    viewHolder.root.block(position)
+    viewHolder.root.block()
   }
 }
 
@@ -157,18 +156,18 @@ internal data class StateBuilderItem<T>(
   private val _id: Long,
   @LayoutRes private val layoutRes: Int,
   var state: T?,
-  private val block: View.(T?, Int) -> Unit
+  private val block: View.(T?) -> Unit
 ) : Item<GroupieViewHolder>(_id) {
   override fun getLayout(): Int = layoutRes
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-    viewHolder.root.block(state, position)
+    viewHolder.root.block(state)
   }
 }
 
 class ExpandableBuilderItem(
   @LayoutRes private val layoutRes: Int,
-  private val block: View.(Int, ExpandableGroup) -> Unit
+  private val block: View.(ExpandableGroup) -> Unit
 ) : Item<GroupieViewHolder>(), ExpandableItem {
 
   private var onToggleListener: ExpandableGroup? = null
@@ -176,7 +175,7 @@ class ExpandableBuilderItem(
   override fun getLayout(): Int = layoutRes
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-    viewHolder.root.block(position, onToggleListener!!)
+    viewHolder.root.block(onToggleListener!!)
   }
 
   override fun setExpandableGroup(onToggleListener: ExpandableGroup) {

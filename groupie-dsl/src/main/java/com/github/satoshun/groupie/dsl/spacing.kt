@@ -69,12 +69,12 @@ fun GroupieItemBuilder.padding(
 
 internal class SingleGroupieItemBuilder(
   private val parent: GroupieItemBuilder,
-  private val beforeBlock: View.(Int) -> Unit
+  private val beforeBlock: View.() -> Unit
 ) : GroupieItemBuilder {
-  override fun item(layoutRes: Int, block: View.(Int) -> Unit) {
+  override fun item(layoutRes: Int, block: View.() -> Unit) {
     parent.item(layoutRes) {
-      beforeBlock(it)
-      block(it)
+      beforeBlock()
+      block()
     }
   }
 }
