@@ -36,12 +36,10 @@ class MainActivity : AppCompatActivity() {
 
       heightSpacer(16.dp)
 
-      margin(16.dp) {
-        padding(16.dp) {
-          item(R.layout.main_item2) {
-            val binding = MainItem2Binding.bind(this)
-            binding.title.text = "Main2"
-          }
+      padding(16.dp) {
+        item(R.layout.main_item2) {
+          val binding = MainItem2Binding.bind(this)
+          binding.title.text = "Main2"
         }
       }
 
@@ -73,10 +71,12 @@ class MainActivity : AppCompatActivity() {
 
       widthSpacer(32.dp)
 
-      padding(16.dp) {
-        item(R.layout.main_item11) {
-          val binding = MainItem11Binding.bind(this)
-          binding.title.text = "Main111"
+      margin(24.dp) {
+        padding(16.dp) {
+          item(R.layout.main_item11) {
+            val binding = MainItem11Binding.bind(this)
+            binding.title.text = "Main111"
+          }
         }
       }
     }
