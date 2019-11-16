@@ -36,6 +36,13 @@ binding.vertical.adapter = groupieAdapter {
       textAlignment = View.TEXT_ALIGNMENT_VIEW_END
     )
   }
+
+  margin(16.dp) {
+    lifecycleScope.item(dataSource, R.layout.main_item1) {
+      val binding = MainItem1Binding.bind(this)
+      binding.title.text = it.toString()
+    }
+  }
 }
 ```
 
