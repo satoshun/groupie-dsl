@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.satoshun.example.databinding.MainActBinding
@@ -17,6 +19,8 @@ import com.github.satoshun.groupie.dsl.margin
 import com.github.satoshun.groupie.dsl.padding
 import com.github.satoshun.groupie.dsl.text
 import com.github.satoshun.groupie.dsl.widthSpacer
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: MainActBinding
@@ -27,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     binding = MainActBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    val dataSource = MutableLiveData<Int>()
     binding.vertical.layoutManager = LinearLayoutManager(this)
     binding.vertical.adapter = groupieAdapter {
       item(R.layout.main_item1) {
@@ -56,6 +61,11 @@ class MainActivity : AppCompatActivity() {
           textAlignment = View.TEXT_ALIGNMENT_VIEW_END
         )
       }
+
+      item(lifecycleScope, dataSource, R.layout.main_item1) { data, _ ->
+        val binding = MainItem1Binding.bind(this)
+        binding.title.text = data.toString()
+      }
     }
 
     binding.horizontal.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
@@ -74,6 +84,13 @@ class MainActivity : AppCompatActivity() {
             binding.title.text = "Main111"
           }
         }
+      }
+    }
+
+    lifecycleScope.launch {
+      while (true) {
+        delay(3000)
+        dataSource.value = (dataSource.value ?: 0) + 1
       }
     }
   }

@@ -27,6 +27,7 @@ dependencies {
   implementation COROUTINE
   implementation UI_COROUTINE
 
+  implementation LIVEDATA
   implementation LIFECYCLE_RUNTIME
 
   testImplementation JUNIT

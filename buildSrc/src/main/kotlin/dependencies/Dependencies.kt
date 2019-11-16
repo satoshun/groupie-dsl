@@ -36,10 +36,9 @@ const val BROWSER = "androidx.browser:browser:1.0.0"
 const val NAVIGATION = "android.arch.navigation:navigation-fragment-ktx:$VNAVIGATION"
 const val NAVIGATION_UI = "android.arch.navigation:navigation-ui-ktx:$VNAVIGATION"
 
-const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
-const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.1.0"
+const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
+const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
 const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:2.0.0"
-const val LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:2.1.0"
 const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02"
 
 const val MULTIDEX = "androidx.multidex:multidex:2.0.0"
@@ -51,8 +50,8 @@ const val ANDROID_ANNOTATION = "androidx.annotation:annotation:1.0.0"
 
 const val GLIDE = "com.github.bumptech.glide:glide:4.9.0"
 
-const val JUNIT = "junit:junit:4.13-beta-1"
-const val TRUTH = "com.google.truth:truth:0.42"
+const val JUNIT = "junit:junit:4.12"
+const val TRUTH = "com.google.truth:truth:1.0"
 const val MOCKITO_KOTLIN = "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
 const val TEST_RUNNER = "androidx.test:runner:1.1.1"
 const val TEST_RULE = "androidx.test:rules:1.1.0"

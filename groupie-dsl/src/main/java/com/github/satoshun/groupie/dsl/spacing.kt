@@ -71,8 +71,8 @@ internal class SingleGroupieItemBuilder(
   private val parent: GroupieItemBuilder,
   private val beforeBlock: View.(Int) -> Unit
 ) : GroupieItemBuilder {
-  override fun item(layoutRes: Int, data: Any?, block: View.(Int) -> Unit) {
-    parent.item(layoutRes, data) {
+  override fun item(layoutRes: Int, block: View.(Int) -> Unit) {
+    parent.item(layoutRes) {
       beforeBlock(it)
       block(it)
     }

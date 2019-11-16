@@ -2,12 +2,17 @@ package com.github.satoshun.groupie.dsl
 
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asFlow
 import com.xwray.groupie.ExpandableGroup
 import com.xwray.groupie.ExpandableItem
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicLong
 
 @DslMarker
@@ -19,7 +24,6 @@ interface GroupieDSLTag
 interface GroupieItemBuilder : GroupieDSLTag {
   fun item(
     @LayoutRes layoutRes: Int,
-    data: Any? = null,
     block: View.(Int) -> Unit
   )
 }
@@ -46,17 +50,37 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
 
   override fun item(
     @LayoutRes layoutRes: Int,
-    data: Any?,
     block: View.(Int) -> Unit
   ) {
     items.add(
       BuilderItem(
-        data?.hashCode()?.toLong() ?: ID_COUNTER.decrementAndGet(),
+        ID_COUNTER.decrementAndGet(),
         layoutRes,
-        data,
         block
       )
     )
+  }
+
+  fun <T> item(
+    scope: CoroutineScope,
+    source: LiveData<T>,
+    @LayoutRes layoutRes: Int,
+    block: View.(T?, Int) -> Unit
+  ) {
+    val item = StateBuilderItem<T>(
+      ID_COUNTER.decrementAndGet(),
+      layoutRes,
+      null,
+      block
+    )
+    items.add(item)
+
+    scope.launch {
+      source.asFlow().collect {
+        item.state = it
+        item.notifyChanged()
+      }
+    }
   }
 
   @GroupieDSL
@@ -90,14 +114,12 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
 class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
   fun item(
     @LayoutRes layoutRes: Int,
-    data: Any? = null,
     block: View.(Int) -> Unit
   ) {
     add(
       BuilderItem(
-        data?.hashCode()?.toLong() ?: ID_COUNTER.decrementAndGet(),
+        ID_COUNTER.decrementAndGet(),
         layoutRes,
-        data,
         block
       )
     )
@@ -119,16 +141,28 @@ class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
   }
 }
 
-data class BuilderItem(
+internal data class BuilderItem(
   private val _id: Long,
   @LayoutRes private val layoutRes: Int,
-  private val any: Any?,
   private val block: View.(Int) -> Unit
 ) : Item<GroupieViewHolder>(_id) {
   override fun getLayout(): Int = layoutRes
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
     viewHolder.root.block(position)
+  }
+}
+
+internal data class StateBuilderItem<T>(
+  private val _id: Long,
+  @LayoutRes private val layoutRes: Int,
+  var state: T?,
+  private val block: View.(T?, Int) -> Unit
+) : Item<GroupieViewHolder>(_id) {
+  override fun getLayout(): Int = layoutRes
+
+  override fun bind(viewHolder: GroupieViewHolder, position: Int) {
+    viewHolder.root.block(state, position)
   }
 }
 
