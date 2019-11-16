@@ -2,6 +2,7 @@ package com.github.satoshun.example
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.github.satoshun.groupie.dsl.groupieAdapter
 import com.github.satoshun.groupie.dsl.heightSpacer
 import com.github.satoshun.groupie.dsl.margin
 import com.github.satoshun.groupie.dsl.padding
+import com.github.satoshun.groupie.dsl.text
 import com.github.satoshun.groupie.dsl.widthSpacer
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +46,18 @@ class MainActivity : AppCompatActivity() {
       }
 
       heightSpacer(16.dp)
+
+      margin(left = 24.dp, right = 24.dp) {
+        text(
+          text = "HeadLine5",
+          textAppearance = R.style.TextAppearance_MaterialComponents_Headline5
+        )
+        text(
+          text = "HeadLine6",
+          textAppearance = R.style.TextAppearance_MaterialComponents_Headline6,
+          textAlignment = View.TEXT_ALIGNMENT_VIEW_END
+        )
+      }
     }
 
     binding.horizontal.layoutManager = LinearLayoutManager(
