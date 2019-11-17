@@ -9,9 +9,11 @@ Reduction of code for simple GroupieAdapter and items.
 ```kotlin
 binding.vertical.layoutManager = LinearLayoutManager(this)
 binding.vertical.adapter = groupieAdapter {
-  item(R.layout.main_item1) {
-    val binding = MainItem1Binding.bind(this)
-    binding.title.text = "Main1"
+  repeat(5) {
+    item(R.layout.main_item1) {
+      val binding = MainItem1Binding.bind(this)
+      binding.title.text = "$it"
+    }
   }
 
   heightSpacer(16.dp)
@@ -19,7 +21,7 @@ binding.vertical.adapter = groupieAdapter {
   padding(16.dp) {
     item(R.layout.main_item2) {
       val binding = MainItem2Binding.bind(this)
-      binding.title.text = "Main2"
+      binding.title.text = "main_item2"
     }
   }
 
