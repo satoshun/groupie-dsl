@@ -69,13 +69,15 @@ fun GroupieItemBuilder.padding(
   )
 }
 
+internal typealias ItemViewInterceptor = View.() -> Unit
+
 internal class SingleGroupieItemBuilder(
   private val parent: GroupieItemBuilder,
-  private val beforeBlock: View.() -> Unit
+  private val itemViewInterceptor: ItemViewInterceptor
 ) : GroupieItemBuilder {
   override fun item(layoutRes: Int, block: View.() -> Unit) {
     parent.item(layoutRes) {
-      beforeBlock()
+      itemViewInterceptor()
       block()
     }
   }
@@ -87,7 +89,7 @@ internal class SingleGroupieItemBuilder(
   ) {
     with(parent) {
       item(source, layoutRes) {
-        this@SingleGroupieItemBuilder.beforeBlock(this)
+        this@SingleGroupieItemBuilder.itemViewInterceptor(this)
         block(it)
       }
     }
