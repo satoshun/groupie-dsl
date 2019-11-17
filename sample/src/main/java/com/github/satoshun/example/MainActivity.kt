@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     binding = MainActBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    val dataSource = MutableLiveData<Int>()
+    val dataSource = MutableLiveData(0)
     binding.vertical.layoutManager = LinearLayoutManager(this)
     binding.vertical.adapter = groupieAdapter {
       repeat(5) {

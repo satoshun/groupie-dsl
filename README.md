@@ -6,6 +6,8 @@ Reduction of code for simple GroupieAdapter and items.
 
 ### vertical
 
+<img align="right" width="300" src="art/vertical.png" />
+
 ```kotlin
 binding.vertical.layoutManager = LinearLayoutManager(this)
 binding.vertical.adapter = groupieAdapter {
