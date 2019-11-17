@@ -37,10 +37,12 @@ binding.vertical.adapter = groupieAdapter {
     )
   }
 
-  margin(16.dp) {
-    lifecycleScope.item(dataSource, R.layout.main_item1) {
-      val binding = MainItem1Binding.bind(this)
-      binding.title.text = it.toString()
+  opacity(0.3f) {
+    margin(16.dp) {
+      lifecycleScope.item(dataSource, R.layout.main_item1) {
+        val binding = MainItem1Binding.bind(this)
+        binding.title.text = it.toString()
+      }
     }
   }
 }
