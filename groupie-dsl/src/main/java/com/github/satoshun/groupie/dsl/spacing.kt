@@ -11,7 +11,7 @@ fun GroupieItemBuilder.margin(
   bottom: GroupieDp = 0.dp,
   child: GroupieItemBuilder.() -> Unit
 ) {
-  SingleGroupieItemBuilder(this) {
+  GroupieItemInterceptor(this) {
     updateLayoutParams<ViewGroup.MarginLayoutParams> {
       this.leftMargin = left.px(context)
       this.topMargin = top.px(context)
@@ -42,7 +42,7 @@ fun GroupieItemBuilder.padding(
   bottom: GroupieDp = 0.dp,
   child: GroupieItemBuilder.() -> Unit
 ) {
-  SingleGroupieItemBuilder(this) {
+  GroupieItemInterceptor(this) {
     updatePadding(
       left = left.px(context),
       top = top.px(context),

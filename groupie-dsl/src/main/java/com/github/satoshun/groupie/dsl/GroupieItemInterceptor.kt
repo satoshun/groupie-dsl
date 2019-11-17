@@ -6,7 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 
 internal typealias ItemViewInterceptor = View.() -> Unit
 
-internal class SingleGroupieItemBuilder(
+internal class GroupieItemInterceptor(
   private val parent: GroupieItemBuilder,
   private val itemViewInterceptor: ItemViewInterceptor
 ) : GroupieItemBuilder {
@@ -24,7 +24,7 @@ internal class SingleGroupieItemBuilder(
   ) {
     with(parent) {
       item(source, layoutRes) {
-        this@SingleGroupieItemBuilder.itemViewInterceptor(this)
+        this@GroupieItemInterceptor.itemViewInterceptor(this)
         block(it)
       }
     }

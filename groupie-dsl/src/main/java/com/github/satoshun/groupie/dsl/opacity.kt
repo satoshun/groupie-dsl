@@ -6,7 +6,7 @@ fun GroupieItemBuilder.opacity(
   @FloatRange(from = 0.0, to = 1.0) opacity: Float,
   child: GroupieItemBuilder.() -> Unit
 ) {
-  SingleGroupieItemBuilder(this) {
+  GroupieItemInterceptor(this) {
     this.alpha = opacity
   }.child()
 }
