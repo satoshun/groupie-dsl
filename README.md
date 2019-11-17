@@ -54,6 +54,8 @@ binding.vertical.adapter = groupieAdapter {
 
 ### horizontal
 
+<img align="right" width="300" src="art/horizontal.png" />
+
 ```kotlin
 binding.horizontal.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 binding.horizontal.adapter = groupieAdapter {
