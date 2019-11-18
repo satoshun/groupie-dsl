@@ -13,7 +13,6 @@ import com.xwray.groupie.Item
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.concurrent.atomic.AtomicLong
 
 @DslMarker
 annotation class GroupieDSL
@@ -40,8 +39,6 @@ fun groupAdapter(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
     addAll()
   }
 
-private val ID_COUNTER = AtomicLong(0)
-
 class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
   GroupieItemBuilder,
   GroupieDSLTag {
@@ -60,7 +57,6 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
   ) {
     items.add(
       BuilderItem(
-        ID_COUNTER.decrementAndGet(),
         layoutRes,
         block
       )
@@ -73,7 +69,6 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
     block: View.(T?) -> Unit
   ) {
     val item = StateBuilderItem<T>(
-      ID_COUNTER.decrementAndGet(),
       layoutRes,
       null,
       block
@@ -123,7 +118,6 @@ class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
   ) {
     add(
       BuilderItem(
-        ID_COUNTER.decrementAndGet(),
         layoutRes,
         block
       )
@@ -147,10 +141,9 @@ class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
 }
 
 internal data class BuilderItem(
-  private val _id: Long,
   @LayoutRes private val layoutRes: Int,
   private val block: View.() -> Unit
-) : Item<GroupieViewHolder>(_id) {
+) : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = layoutRes
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
@@ -159,11 +152,10 @@ internal data class BuilderItem(
 }
 
 internal data class StateBuilderItem<T>(
-  private val _id: Long,
   @LayoutRes private val layoutRes: Int,
   var state: T?,
   private val block: View.(T?) -> Unit
-) : Item<GroupieViewHolder>(_id) {
+) : Item<GroupieViewHolder>() {
   override fun getLayout(): Int = layoutRes
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
