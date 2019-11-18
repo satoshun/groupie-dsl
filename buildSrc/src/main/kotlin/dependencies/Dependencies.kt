@@ -11,6 +11,7 @@ const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.6.0-beta04"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
 const val SAFEARGS_PLUGIN = "android.arch.navigation:navigation-safe-args-gradle-plugin:$VNAVIGATION"
 const val VERSIONS_PLUGIN = "com.github.ben-manes:gradle-versions-plugin:0.20.0"
+const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.8.0"
 
 private const val VCOUROUTINE = "1.3.2"
 const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib:$VKOTLIN"

@@ -13,7 +13,7 @@ import com.github.satoshun.example.databinding.MainItem11Binding
 import com.github.satoshun.example.databinding.MainItem1Binding
 import com.github.satoshun.example.databinding.MainItem2Binding
 import com.github.satoshun.groupie.dsl.dp
-import com.github.satoshun.groupie.dsl.groupieAdapter
+import com.github.satoshun.groupie.dsl.groupAdapter
 import com.github.satoshun.groupie.dsl.heightSpacer
 import com.github.satoshun.groupie.dsl.margin
 import com.github.satoshun.groupie.dsl.opacity
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     val dataSource = MutableLiveData(0)
     binding.vertical.layoutManager = LinearLayoutManager(this)
-    binding.vertical.adapter = groupieAdapter {
+    binding.vertical.adapter = groupAdapter {
       repeat(5) {
         item(R.layout.main_item1) {
           val binding = MainItem1Binding.bind(this)
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     binding.horizontal.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-    binding.horizontal.adapter = groupieAdapter {
+    binding.horizontal.adapter = groupAdapter {
       item(R.layout.main_item11) {
         val binding = MainItem11Binding.bind(this)
         binding.title.text = "Main11"

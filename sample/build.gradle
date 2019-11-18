@@ -13,7 +13,6 @@ android {
     targetSdkVersion TARGET_SDK
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
     release {
@@ -37,8 +36,6 @@ dependencies {
   implementation CONSTRAINTLAYOUT
   implementation KTX
 
-  implementation GLIDE
-
   implementation GROUPIE
 
   implementation COROUTINE
@@ -47,7 +44,4 @@ dependencies {
   implementation LIFECYCLE_RUNTIME
 
   testImplementation JUNIT
-
-  androidTestImplementation TEST_RUNNER
-  androidTestImplementation ESPRESSO
 }
