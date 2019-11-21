@@ -28,6 +28,7 @@ android {
 
 dependencies {
   implementation project(':groupie-dsl')
+//  implementation "com.github.satoshun.groupie.dsl:groupie-dsl:0.0.1"
 
   implementation KOTLIN
 

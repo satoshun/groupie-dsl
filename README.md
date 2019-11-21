@@ -77,6 +77,12 @@ binding.horizontal.adapter = groupAdapter {
 }
 ```
 
+## install
+
+```groovy
+implementation "com.github.satoshun.groupie.dsl:groupie-dsl:0.0.1"
+```
+
 ## others
 
 TODO
