@@ -4,9 +4,11 @@
 
 Reduction of code for simple GroupieAdapter and items.
 
-### vertical
+### usage
 
-<img align="right" width="300" src="art/vertical.png" />
+These sample code uses ViewBinding
+
+### vertical orientation
 
 ```kotlin
 binding.vertical.layoutManager = LinearLayoutManager(this)
@@ -52,9 +54,7 @@ binding.vertical.adapter = groupAdapter {
 }
 ```
 
-### horizontal
-
-<img align="right" width="300" src="art/horizontal.png" />
+### horizontal orientation
 
 ```kotlin
 binding.horizontal.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
@@ -73,6 +73,20 @@ binding.horizontal.adapter = groupAdapter {
         binding.title.text = "Main111"
       }
     }
+  }
+}
+```
+
+### expandable
+
+```kotlin
+binding.recyclerView.adapter = groupAdapter {
+  // header item
+  expandable(R.layout.sample_expandable_item) {
+    // expanded items
+    item(R.layout.sample_expanded_item) {
+    }
+    ...
   }
 }
 ```
