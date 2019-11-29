@@ -6,7 +6,7 @@ Reduction of code for simple GroupieAdapter and items.
 
 ### usage
 
-These sample code uses ViewBinding
+These sample code use ViewBinding
 
 ### vertical orientation
 
@@ -14,8 +14,8 @@ These sample code uses ViewBinding
 binding.vertical.layoutManager = LinearLayoutManager(this)
 binding.vertical.adapter = groupAdapter {
   repeat(5) {
-    item(R.layout.main_item1) {
-      val binding = MainItem1Binding.bind(this)
+    item(R.layout.main_item) {
+      val binding = MainItemBinding.bind(this)
       binding.title.text = "$it"
     }
   }
@@ -23,9 +23,8 @@ binding.vertical.adapter = groupAdapter {
   heightSpacer(16.dp)
 
   padding(16.dp) {
-    item(R.layout.main_item2) {
-      val binding = MainItem2Binding.bind(this)
-      binding.title.text = "main_item2"
+    item(R.layout.main_item) {
+      ...
     }
   }
 
@@ -43,11 +42,12 @@ binding.vertical.adapter = groupAdapter {
     )
   }
 
+  val dataSource = LiveData(...)
   opacity(0.3f) {
     margin(16.dp) {
-      lifecycleScope.item(dataSource, R.layout.main_item1) {
-        val binding = MainItem1Binding.bind(this)
-        binding.title.text = it.toString()
+      // emit this bind method when changed dataSource
+      lifecycleScope.item(dataSource, R.layout.main_item) {
+        ...
       }
     }
   }
@@ -59,18 +59,16 @@ binding.vertical.adapter = groupAdapter {
 ```kotlin
 binding.horizontal.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
 binding.horizontal.adapter = groupAdapter {
-  item(R.layout.main_item11) {
-    val binding = MainItem11Binding.bind(this)
-    binding.title.text = "Main11"
+  item(R.layout.main_item) {
+     ...
   }
 
   widthSpacer(32.dp)
 
   margin(24.dp) {
     padding(16.dp) {
-      item(R.layout.main_item11) {
-        val binding = MainItem11Binding.bind(this)
-        binding.title.text = "Main111"
+      item(R.layout.main_item) {
+        ...
       }
     }
   }
@@ -85,6 +83,7 @@ binding.recyclerView.adapter = groupAdapter {
   expandable(R.layout.sample_expandable_item) {
     // expanded items
     item(R.layout.sample_expanded_item) {
+      ...
     }
     ...
   }
