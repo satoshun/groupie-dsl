@@ -3,6 +3,7 @@ package com.github.satoshun.example
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
@@ -35,6 +36,12 @@ class MainActivity : AppCompatActivity() {
     val dataSource = MutableLiveData(0)
     binding.vertical.layoutManager = LinearLayoutManager(this)
     binding.vertical.adapter = groupAdapter {
+      expandable(R.layout.sample_expandable_item) {
+        item(R.layout.sample_expanded_item) {
+          (this as TextView).text = "expanded"
+        }
+      }
+
       repeat(5) {
         item(R.layout.main_item1) {
           val binding = MainItem1Binding.bind(this)

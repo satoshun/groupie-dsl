@@ -5,7 +5,6 @@ import androidx.annotation.LayoutRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asFlow
 import com.xwray.groupie.ExpandableGroup
-import com.xwray.groupie.ExpandableItem
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -45,12 +44,6 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
 
   private var items: MutableList<Group> = mutableListOf()
 
-  fun update(block: BuilderGroupAdapter.() -> Unit): BuilderGroupAdapter =
-    BuilderGroupAdapter().apply {
-      block()
-      updateAll()
-    }
-
   override fun item(
     @LayoutRes layoutRes: Int,
     block: View.() -> Unit
@@ -83,11 +76,14 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
     }
   }
 
-  @GroupieDSL
   fun expandable(
     @LayoutRes layoutRes: Int,
-    block: View.(ExpandableGroup) -> Unit,
-    expandedBlock: BuilderExpandableGroup.() -> Unit
+    block: View.(ExpandableGroup) -> Unit = { expandable ->
+      setOnClickListener {
+        expandable.onToggleExpanded()
+      }
+    },
+    expandedBlock: GroupieItemBuilder.() -> Unit
   ) {
     items.add(
       BuilderExpandableGroup(
@@ -102,41 +98,6 @@ class BuilderGroupAdapter : GroupAdapter<GroupieViewHolder>(),
   internal fun addAll() {
     addAll(items)
     items.clear()
-  }
-
-  private fun updateAll() {
-    update(items)
-    items.clear()
-  }
-}
-
-@GroupieDSL
-class BuilderExpandableGroup(group: Group) : ExpandableGroup(group) {
-  fun item(
-    @LayoutRes layoutRes: Int,
-    block: View.() -> Unit
-  ) {
-    add(
-      BuilderItem(
-        layoutRes,
-        block
-      )
-    )
-  }
-
-  fun expandable(
-    @LayoutRes layoutRes: Int,
-    block: View.(ExpandableGroup) -> Unit,
-    expandableBlock: BuilderExpandableGroup.() -> Unit
-  ) {
-    add(
-      BuilderExpandableGroup(
-        ExpandableBuilderItem(
-          layoutRes,
-          block
-        )
-      ).apply(expandableBlock)
-    )
   }
 }
 
@@ -160,23 +121,5 @@ internal data class StateBuilderItem<T>(
 
   override fun bind(viewHolder: GroupieViewHolder, position: Int) {
     viewHolder.root.block(state)
-  }
-}
-
-class ExpandableBuilderItem(
-  @LayoutRes private val layoutRes: Int,
-  private val block: View.(ExpandableGroup) -> Unit
-) : Item<GroupieViewHolder>(), ExpandableItem {
-
-  private var onToggleListener: ExpandableGroup? = null
-
-  override fun getLayout(): Int = layoutRes
-
-  override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-    viewHolder.root.block(onToggleListener!!)
-  }
-
-  override fun setExpandableGroup(onToggleListener: ExpandableGroup) {
-    this.onToggleListener = onToggleListener
   }
 }
