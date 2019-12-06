@@ -4,12 +4,10 @@ const val COMPILE_SDK = 29
 const val MIN_SDK = 18
 const val TARGET_SDK = 29
 
-private const val VKOTLIN = "1.3.60"
-private const val VNAVIGATION = "1.0.0"
+private const val VKOTLIN = "1.3.61"
 
-const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.6.0-beta04"
+const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.6.0-beta05"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
-const val SAFEARGS_PLUGIN = "android.arch.navigation:navigation-safe-args-gradle-plugin:$VNAVIGATION"
 const val VERSIONS_PLUGIN = "com.github.ben-manes:gradle-versions-plugin:0.20.0"
 const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.8.0"
 
@@ -34,8 +32,6 @@ const val MEDIA2 = "androidx.media2:media2:1.0.0-alpha04"
 const val MATERIAL = "com.google.android.material:material:1.1.0-beta02"
 const val PAGING = "androidx.paging:paging-runtime:2.1.0"
 const val BROWSER = "androidx.browser:browser:1.0.0"
-const val NAVIGATION = "android.arch.navigation:navigation-fragment-ktx:$VNAVIGATION"
-const val NAVIGATION_UI = "android.arch.navigation:navigation-ui-ktx:$VNAVIGATION"
 
 const val VIEWMODEL = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
 const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
