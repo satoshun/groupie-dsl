@@ -6,7 +6,7 @@ const val TARGET_SDK = 29
 
 private const val VKOTLIN = "1.3.61"
 
-const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.6.0-beta05"
+const val ANDROID_PLUGIN = "com.android.tools.build:gradle:3.6.0"
 const val KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VKOTLIN"
 const val VERSIONS_PLUGIN = "com.github.ben-manes:gradle-versions-plugin:0.20.0"
 const val PUBLISH_PLUGIN = "com.vanniktech:gradle-maven-publish-plugin:0.8.0"
@@ -23,11 +23,6 @@ const val FRAGMENTX = "androidx.fragment:fragment-ktx:1.1.0"
 const val APPCOMPAT = "androidx.appcompat:appcompat:1.1.0"
 const val RECYCLERVIEW = "androidx.recyclerview:recyclerview:1.0.0"
 const val CONSTRAINTLAYOUT = "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
-const val CARDVIEW = "androidx.cardview:cardview:1.0.0"
-
-const val CONTENTPAGER = "androidx.contentpager:contentpager:1.0.0-rc01"
-const val WEBKIT = "androidx.webkit:webkit:1.0.0"
-const val MEDIA2 = "androidx.media2:media2:1.0.0-alpha04"
 
 const val MATERIAL = "com.google.android.material:material:1.1.0-beta02"
 const val PAGING = "androidx.paging:paging-runtime:2.1.0"
@@ -38,10 +33,8 @@ const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
 const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:2.0.0"
 const val LIFECYCLE_RUNTIME = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02"
 
-const val MULTIDEX = "androidx.multidex:multidex:2.0.0"
-
-const val GROUPIE = "com.xwray:groupie:2.7.1"
-const val GROUPIE_DATABINDING = "com.xwray:groupie-databinding:2.7.1"
+const val GROUPIE = "com.github.lisawray.groupie:groupie:2.9.0"
+const val GROUPIE_DATABINDING = "com.github.lisawray.groupie:groupie-databinding:2.9.0"
 
 const val ANDROID_ANNOTATION = "androidx.annotation:annotation:1.0.0"
 
